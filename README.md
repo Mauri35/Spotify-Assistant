@@ -10,7 +10,7 @@
 
 🚅 Simple code, easily modifiable
 
-<img src="https://imgur.com/a/2mNdjZt"> 
+<img src="https://i.imgur.com/dGReORh.gif"> 
 
 # Pendings
 Add support for 2 languages, English and Spanish (current)
