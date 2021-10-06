@@ -12,6 +12,13 @@
 
 <img src="https://i.imgur.com/dGReORh.gif"> 
 
+# Voice Commands
+- volumen (10, 20, 30, 40, 50, 60, 70, 80, 90, 100) #Change the song volume
+- siguiente #Skip song
+- atras #Previous song
+- pausa #Pause music
+- reprducir #Play music
+
 # Pendings
 Add support for 2 languages, English and Spanish (current)
 
