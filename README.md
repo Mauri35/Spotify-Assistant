@@ -30,7 +30,7 @@ Add support for 2 languages, English and Spanish (current)
 - Change the user token in config.json you get it in: https://developer.spotify.com/console/put-pause/ (Scopes: user-modify-playback-state)
 - Run: python3 assistant.py
 
-# Proyect status:
+# Project status:
 - This project is active and waiting for improvements, any recommendations will be used to improve it!
 - The current language of the voice commands are in Spanish, the sooner I have time I will upload an English version, but you can modify it by changing it in the r.recognize_google and in the ifs of the commands
 
