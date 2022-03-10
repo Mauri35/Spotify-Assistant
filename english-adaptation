@@ -1,0 +1,223 @@
+import speech_recognition as sr
+import requests
+import json 
+from win10toast import ToastNotifier
+import time
+
+
+with open('config.json') as file:
+    data = json.load(file)
+    token = data['token']
+
+r = sr.Recognizer() 
+
+try:
+    toaster = ToastNotifier()
+    toaster.show_toast("Spotify Assistant","Spotify Assistant Starting", duration=1)
+
+    def main():
+        with sr.Microphone() as source:
+            print('Speak Anything : ')
+            r.adjust_for_ambient_noise(source)
+            audio = r.listen(source)
+        try:
+            text = r.recognize_google(audio, language='en-US')
+            print('You said: {}'.format(text))
+            if text == "next":
+                NextSong()
+                print('You said: {}'.format(text))
+            elif text == "previous":
+                PreviousSong()
+                print('You said: {}'.format(text))
+            elif text == "pause":
+                PauseSong()
+                print('You said: {}'.format(text))
+            elif text == "play":
+                Play()
+                print('You said: {}'.format(text))
+            elif text == "quit assistant":
+                Quit()
+            elif text == "volume ten":
+                url = "https://api.spotify.com/v1/me/player/volume?volume_percent=10"
+                payload={}
+                headers = {
+                'Authorization': 'Bearer {}'.format(token)
+                }
+                response = requests.request("PUT", url, headers=headers, data=payload)
+                toaster = ToastNotifier()
+                toaster.show_toast("Spotify Assistant","Volume 10", duration=2)
+                main()
+            elif text == "volume 20":
+                url = "https://api.spotify.com/v1/me/player/volume?volume_percent=20"
+                payload={}
+                headers = {
+                'Authorization': 'Bearer {}'.format(token)
+                }
+                response = requests.request("PUT", url, headers=headers, data=payload)
+                toaster = ToastNotifier()
+                toaster.show_toast("Spotify Assistant","Volume 20", duration=2)
+                main()
+            elif text == "volume 30":
+                url = "https://api.spotify.com/v1/me/player/volume?volume_percent=30"
+                payload={}
+                headers = {
+                'Authorization': 'Bearer {}'.format(token)
+                }
+                response = requests.request("PUT", url, headers=headers, data=payload)
+                toaster = ToastNotifier()
+                toaster.show_toast("Spotify Assistant","Volume 30", duration=2)
+                main()
+            elif text == "volume 40":
+                url = "https://api.spotify.com/v1/me/player/volume?volume_percent=40"
+                payload={}
+                headers = {
+                'Authorization': 'Bearer {}'.format(token)
+                }
+                response = requests.request("PUT", url, headers=headers, data=payload)
+                toaster = ToastNotifier()
+                toaster.show_toast("Spotify Assistant","Volume 40", duration=2)
+                main()
+            elif text == "volume 50":
+                url = "https://api.spotify.com/v1/me/player/volume?volume_percent=50"
+                payload={}
+                headers = {
+                'Authorization': 'Bearer {}'.format(token)
+                }
+                response = requests.request("PUT", url, headers=headers, data=payload)
+                toaster = ToastNotifier()
+                toaster.show_toast("Spotify Assistant","Volume 50", duration=2)
+                main()
+            elif text == "volume 60":
+                url = "https://api.spotify.com/v1/me/player/volume?volume_percent=60"
+                payload={}
+                headers = {
+                'Authorization': 'Bearer {}'.format(token)
+                }
+                response = requests.request("PUT", url, headers=headers, data=payload)
+                toaster = ToastNotifier()
+                toaster.show_toast("Spotify Assistant","Volume 60", duration=2)
+                main()
+            elif text == "volume 70":
+                url = "https://api.spotify.com/v1/me/player/volume?volume_percent=70"
+                payload={}
+                headers = {
+                'Authorization': 'Bearer {}'.format(token)
+                }
+                response = requests.request("PUT", url, headers=headers, data=payload)
+                toaster = ToastNotifier()
+                toaster.show_toast("Spotify Assistant","Volume 70", duration=2)
+                main()
+            elif text == "volume 80":
+                url = "https://api.spotify.com/v1/me/player/volume?volume_percent=80"
+                payload={}
+                headers = {
+                'Authorization': 'Bearer {}'.format(token)
+                }
+                response = requests.request("PUT", url, headers=headers, data=payload)
+                toaster = ToastNotifier()
+                toaster.show_toast("Spotify Assistant","Volume 80", duration=2)
+                main()
+            elif text == "volume 90":
+                url = "https://api.spotify.com/v1/me/player/volume?volume_percent=90"
+                payload={}
+                headers = {
+                'Authorization': 'Bearer {}'.format(token)
+                }
+                response = requests.request("PUT", url, headers=headers, data=payload)
+                toaster = ToastNotifier()
+                toaster.show_toast("Spotify Assistant","Volume 90", duration=2)
+                main()
+            elif text == "volume 100":
+                url = "https://api.spotify.com/v1/me/player/volume?volume_percent=100"
+                payload={}
+                headers = {
+                'Authorization': 'Bearer {}'.format(token)
+                }
+                response = requests.request("PUT", url, headers=headers, data=payload)
+                toaster = ToastNotifier()
+                toaster.show_toast("Spotify Assistant","Volume 100", duration=2)
+                main()
+            main()
+        except:
+            print('Sorry could not hear')
+            main()
+except:
+    main()
+
+def NextSong():
+    url = "https://api.spotify.com/v1/me/player/next"
+    payload={}
+    headers = {
+      'Authorization': 'Bearer {}'.format(token)
+    }
+    response = requests.request("POST", url, headers=headers, data=payload)
+
+    time.sleep(.3)
+    
+    url = "https://api.spotify.com/v1/me/player?market=ES"
+    payload={}
+    headers = {
+    'Authorization': 'Bearer {}'.format(token)
+    }
+    response = requests.get(url, headers=headers, data=payload)
+    xd = json.loads(response.text)
+    toaster = ToastNotifier()
+    toaster.show_toast("Spotify Assistant","Skipped Now playing: {}".format(xd["item"]["name"]), duration=1)
+    main()
+
+
+
+
+def PreviousSong():
+    url = "https://api.spotify.com/v1/me/player/previous"
+    payload={}
+    headers = {
+      'Authorization': 'Bearer {}'.format(token)
+    }
+    response = requests.request("POST", url, headers=headers, data=payload)
+
+    time.sleep(.3)
+    
+    url = "https://api.spotify.com/v1/me/player?market=ES"
+    payload={}
+    headers = {
+    'Authorization': 'Bearer {}'.format(token)
+    }
+    response = requests.get(url, headers=headers, data=payload)
+    xd = json.loads(response.text)
+    toaster = ToastNotifier()
+    toaster.show_toast("Spotify Assistant","Previous Now playing: {}".format(xd["item"]["name"]), duration=1)
+    main()
+
+def PauseSong():
+    url = "https://api.spotify.com/v1/me/player/pause"
+    payload={}
+    headers = {
+      'Authorization': 'Bearer {}'.format(token)
+    }
+    response = requests.request("PUT", url, headers=headers, data=payload)
+    toaster = ToastNotifier()
+    toaster.show_toast("Spotify Assistant","Paused", duration=1)
+    main()
+
+def Play():
+    url = "https://api.spotify.com/v1/me/player/play"
+    payload={}
+    headers = {
+      'Authorization': 'Bearer {}'.format(token)
+    }
+    response = requests.request("PUT", url, headers=headers, data=payload)
+
+
+    url = "https://api.spotify.com/v1/me/player?market=ES"
+    payload={}
+    headers = {
+    'Authorization': 'Bearer {}'.format(token)
+    }
+    response = requests.get(url, headers=headers, data=payload)
+    xd = json.loads(response.text)
+    toaster = ToastNotifier()
+    toaster.show_toast("Spotify Assistant","Now playing: {}".format(xd["item"]["name"]), duration=1)
+    main()
+
+main()
